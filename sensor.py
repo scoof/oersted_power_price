@@ -1,5 +1,5 @@
 """Platform for sensor integration."""
-from datetime import timedelta
+from datetime import datetime, timedelta
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
 import requests
@@ -38,9 +38,9 @@ class Oersted_Power_Price(Entity):
         """Fetch new state data for the sensor.
         This is the only method that should fetch new data for Home Assistant.
         """
-        today = '2020-07-21'
-        tomorrow = '2020-07-22'
-        hour = 12
+        now = datetime.now()
+        today = now.strftime('%Y-%m-%d')
+        tomorrow = (now+timedelta(days=1)).strftime('%Y-%m-%d')
         r = requests.get(f'https://privat.orsted.dk/?obexport_format=csv&obexport_start={today}&obexport_end={tomorrow}&obexport_region=east')
         r.raise_for_status()
-        self._state = float(r.text.splitlines()[1].split(',')[hour+1])
+        self._state = float(r.text.splitlines()[1].split(',')[now.hour+1])
