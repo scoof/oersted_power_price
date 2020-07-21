@@ -1,0 +1,1 @@
+"""Ørsted power price integration."""

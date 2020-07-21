@@ -1,0 +1,8 @@
+{
+  "domain": "oersted_power_price",
+  "name": "Ørsted Power Price",
+  "documentation": "https://github.com/scoof/oersted-power-price",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": ["requests==2.24.0"]
+}
