@@ -43,4 +43,4 @@ class Oersted_Power_Price(Entity):
         tomorrow = (now+timedelta(days=1)).strftime('%Y-%m-%d')
         r = requests.get(f'https://privat.orsted.dk/?obexport_format=csv&obexport_start={today}&obexport_end={tomorrow}&obexport_region=east')
         r.raise_for_status()
-        self._state = float(r.text.splitlines()[1].split(',')[now.hour+1])
+        self._state = float(r.text.splitlines()[1].split(',')[now.hour+1])/100
